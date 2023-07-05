@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Expenditure>
+
+@{
+    ViewData["Title"] = "Expenditure Page";
+    string[] headers = new string[] { "Nom du produit", "Date de la dépense", "Prix" };
+}
+
+<div class="text-center">
+    <h3 style="text-decoration: underline">Liste des dépenses:</h3>
+
+    <table style="margin: 20px auto">
+        <thead style="border: 1px solid black">
+            <tr>
+                @foreach (string h in headers)
+                {
+                    <th style="border: 1px solid black">@h</th>
+                }
+            </tr>
+        </thead>
+        <tbody style="border: 1px solid black">
+            @foreach (var expenditure in Model)
+            {
+                <tr style="border: 1px solid black">
+                    <td style="border: 1px solid black">@expenditure.Nom</td>
+                    <td style="border: 1px solid black">@expenditure.Date.ToString().Substring(0,10)</td>
+                    <td style="border: 1px solid black">@expenditure.Prix €</td>
+                </tr>
+            }
+            <tr>
+                <th style="border: 1px solid black">Total</th>
+                <td>@ViewData["Count"] €</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
